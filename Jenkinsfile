@@ -13,7 +13,7 @@ pipeline{
 		 	{
 				checkout([$class: 'GitSCM', branches: [[name: "master"]],
                 doGenerateSubmoduleConfigurations: false, extensions: [], submoduleCfg: [], userRemoteConfigs: [
-                [credentialsId: "ArcadioJenkins", url:"https://github.com/ArcadioGitHub/CI.git"]
+                [credentialsId: "admin", url:"https://github.com/ArcadioGitHub/CI.git"]
                 ]])
 			}
 		}
