@@ -3,7 +3,7 @@ import java.text.SimpleDateFormat
 def dateFormat = new SimpleDateFormat("yyyyMMddHHmm")
 def date = new Date()
 def timestamp = dateFormat.format(date).toString()
-def CORREOS = "arcadiobuelvas@gmail.com"
+def EMAILS = "arcadiobuelvas@gmail.com"
 pipeline{
 	agent any
 	stages {
@@ -11,31 +11,31 @@ pipeline{
 		{
 		 	steps
 		 	{
-				checkout([$class: 'GitSCM', branches: [[name: "develop"]],
+				checkout([$class: 'GitSCM', branches: [[name: "master"]],
                 doGenerateSubmoduleConfigurations: false, extensions: [], submoduleCfg: [], userRemoteConfigs: [
-                [credentialsId: "ArcadioJenkins", url:"http://10.30.30.248/banbif/pruebas_automatizadas_bxi_empresa.git"]
+                [credentialsId: "ArcadioJenkins", url:"https://github.com/ArcadioGitHub/CI.git"]
                 ]])
 			}
 		}
 
-		stage('Ejecutar Pruebas') {
+		stage('Run Tests') {
 			steps {
 				script {
 					try {
 						//bat ("gradle clean test -DRunner=\"${Runner}\" aggregate") //Ejecución en agente Windows con parametro jenkins
 						/*sh ("gradle clean test -DRunner=\"${Runner}\" aggregate") //Ejecución en agente Linux con parametro jenkins*/
-						bat ("gradle clean test aggregate") //Ejecución en agente windows sin parametro jenkins
-						echo 'Test Ejecutados sin Fallo'
+						bat ("gradle clean test aggregate  -Denvironment=dev  -Dcontext=firefox -Dwebdriver.driver=firefox") //Ejecución en agente windows sin parametro jenkins
+						echo 'TESTS EXECUTED SUCCESSFULLY'
 						currentBuild.result = 'SUCCESS'
 					}
 					catch(ex) {
-	    				echo 'Test Ejecutados con Fallo'
+	    				echo 'TESTS FAILED'
 	    				currentBuild.result ='UNSTABLE'
 					}
 				}
 			}
 		}
-		stage('Generar Evidencias') {
+		stage('GENERATE EVIDENCE') {
 			steps {
 			    script {
 			        bat " rename \"${WORKSPACE}\\target\\site\\serenity\" serenity_${timestamp}"
@@ -48,11 +48,11 @@ pipeline{
 			        reportDir: "${WORKSPACE}/target/site/serenity_${timestamp}",
 			        reportFiles: 'index.html',
 			        reportName: 'Serenity Report'])
-				echo 'Reporte Html realizado con exito'
+				echo 'HTML REPORT IS DONE'
 			}
 		}
 
-	/*	stage('Notificar') {
+		stage('NOTIFICATION') {
 			steps {
 				script {
 					if (currentBuild.result == 'UNSTABLE')
@@ -60,20 +60,20 @@ pipeline{
 
          			if (currentBuild.result == 'SUCCESS')
    						emailext(
-							subject: "NOMBREPROYECTO - EJECUCION EXITOSA ESCENARIOS: Job '${env.JOB_NAME} [${env.BUILD_NUMBER}]'",
+							subject: "PROJECT NAME - SUCCESSFUL EXECUTION SCENARIOS: Job '${env.JOB_NAME} [${env.BUILD_NUMBER}]'",
           					body: """<p><b style="color:MediumSeaGreen;">EJECUCION EXITOSA:</b> Job '${env.JOB_NAME} [${env.BUILD_NUMBER}]':</p>
-            				<p><b>Para verificar el estado de la ejecucion ingrese a:</b> &QUOT;<a href='${env.BUILD_URL}'>${env.JOB_NAME} [${env.BUILD_NUMBER}]</a>&QUOT;</p>""",
-         					to:"${CORREOS}"
+            				<p><b>To check the execution status, go to:</b> &QUOT;<a href='${env.BUILD_URL}'>${env.JOB_NAME} [${env.BUILD_NUMBER}]</a>&QUOT;</p>""",
+         					to:"${EMAILS}"
         				)
         			if (currentBuild.result == 'FAILURE')
     					emailext(
-          					subject: "NOMBREPROYECTO - EJECUCION FALLIDA ESCENARIOS: Job '${env.JOB_NAME} [${env.BUILD_NUMBER}]'",
+          					subject: "PROJECT NAME - FAILED EXECUTION SCENARIOS: Job '${env.JOB_NAME} [${env.BUILD_NUMBER}]'",
           					body: """<p><b style="color:red;">EJECUCION FALLIDA:</b> Job '${env.JOB_NAME} [${env.BUILD_NUMBER}]':</p>
-            				<p><b>Para verificar el estado de la ejecucion ingrese a:</b> &QUOT;<a href='${env.BUILD_URL}'>${env.JOB_NAME} [${env.BUILD_NUMBER}]</a>&QUOT;</p>""",
-         					to:"${CORREOS}"
+            				<p><b>To check the execution status, go to:</b> &QUOT;<a href='${env.BUILD_URL}'>${env.JOB_NAME} [${env.BUILD_NUMBER}]</a>&QUOT;</p>""",
+         					to:"${EMAILS}"
         				)
 				}
 			}
-		}*/
+		}
 	}
 }
