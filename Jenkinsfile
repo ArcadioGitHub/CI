@@ -4,6 +4,7 @@ def dateFormat = new SimpleDateFormat("yyyyMMddHHmm")
 def date = new Date()
 def timestamp = dateFormat.format(date).toString()
 def EMAILS = "arcadiobuelvas@gmail.com"
+
 pipeline{
 	agent any
 	stages {
@@ -24,8 +25,8 @@ pipeline{
 					try {
 						//bat ("gradle clean test -DRunner=\"${Runner}\" aggregate") //Ejecución en agente Windows con parametro jenkins
 						/*sh ("gradle clean test -DRunner=\"${Runner}\" aggregate") //Ejecución en agente Linux con parametro jenkins*/
-						bat ("gradle clean test aggregate  -Denvironment=dev  -Dcontext=chrome -Dwebdriver.driver=chrome -Dinjected.tags=browser:chrome")
-						echo 'TESTS IN CHROME EXECUTED SUCCESSFULLY'
+						//bat ("gradle clean test aggregate  -Denvironment=dev  -Dcontext=chrome -Dwebdriver.driver=chrome -Dinjected.tags=browser:chrome")
+						//echo 'TESTS IN CHROME EXECUTED SUCCESSFULLY'
 						bat ("gradle test aggregate  -Denvironment=dev  -Dcontext=firefox -Dwebdriver.driver=firefox -Dinjected.tags=browser:firefox") //Ejecución en agente windows sin parametro jenkins
 						echo 'TESTS IN FIREFOX EXECUTED SUCCESSFULLY'
 						currentBuild.result = 'SUCCESS'
