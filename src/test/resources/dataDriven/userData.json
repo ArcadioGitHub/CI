@@ -1,0 +1,61 @@
+{
+  "dev": {
+    "id": "01",
+    "email": "testEmail7Dev@gmail.com",
+    "pass": "testPassDev",
+    "name": "ArcadioDev",
+    "lastName": "BuelvasDev",
+    "age": "25",
+    "country": "United States",
+    "role": "Software QADEV",
+    "Address1": "Calle 103#18",
+    "Address2": "Calle 43#25",
+    "City": "Miami",
+    "State": "California",
+    "zipCode": "005201",
+    "webSite": "www.arcadiobuelvasDev.com",
+    "picture": "src/test/resources/images/img.png",
+    "phone": "3008974475",
+    "note": "Never stop learning"
+  },
+
+  "staging": {
+      "id": "02",
+      "email": "testEmailStaging@gmail.com",
+      "pass": "testPassStaging",
+      "name": "ArcadioStaging",
+      "lastName": "BuelvasStaging",
+      "age": "25",
+      "country": "United States",
+      "role": "Software QAStaging",
+      "Address1": "Calle 103#18",
+      "Address2": "Calle 43#25",
+      "City": "Miami",
+      "State": "California",
+      "zipCode": "005201",
+      "webSite": "www.arcadiobuelvasStaging.com",
+      "picture": "src/test/resources/images/img.png",
+      "phone": "3008974475",
+      "note": "Never stop learning"
+  },
+
+  "prod": {
+      "id": "03",
+      "email": "testEmailProd@gmail.com",
+      "pass": "testPassProd",
+      "name": "ArcadioProd",
+      "lastName": "BuelvasProd",
+      "age": "25",
+      "country": "United States",
+      "role": "Software QAProd",
+      "Address1": "Calle 103#18",
+      "Address2": "Calle 43#25",
+      "City": "Miami",
+      "State": "California",
+      "zipCode": "005201",
+      "webSite": "www.arcadiobuelvasProd.com",
+      "picture": "src/test/resources/images/img.png",
+      "phone": "3008974475",
+      "note": "Never stop learning"
+  }
+}
