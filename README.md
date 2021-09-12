@@ -80,7 +80,7 @@ La definición de los pasos de la prueba (Orquestador) se puede encontrar en -> 
 El comportamiento de la prueba está escrito en Gherkin con la idea principal de que una persona sin conocimientos de programación pueda entender 
 lo que está haciendo la prueba.  
 
-Puede encontrar el .feature de la prueba aquí -> src/test/resources/jikkosoft.feature.
+Puede encontrar el .feature de la prueba aquí -> src/test/resources/environments.feature.
 
 # Reportes
 
