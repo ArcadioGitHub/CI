@@ -1,4 +1,4 @@
-#Test Automation - Arcadio Buelvas
+## Test Automation - Arcadio Buelvas
 Este Repositorio usa:
 ```
 Selenium
@@ -46,7 +46,7 @@ Ejemplo --> "gradle clean test aggregate  -Denvironment=dev  -Dcontext=chrome -D
 -Dcontext and Dinjected.tags --> Parametros que usa serenity para agregar tags y diferenciar los browsers en los que se corrienron las pruebas cuando genera el reporte HTML.
 ```
 
-#Usando el IDE.
+## Usando el IDE.
 
 ```
 Para correr un solo test --> Ir al folder Runners, abrir la clase Java llamada "Runner" y cambiar el @Tags. 
@@ -61,7 +61,7 @@ Seria algo como lo siguiente:
         snippets = SnippetType.CAMELCASE )			
 ```
 
-#CI.
+## CI.
 
 ```
 En el archivo Jenkins.file esta codificado el Pipeline para su ejecucion en Jenkins.
