@@ -31,20 +31,33 @@ Abrir el proyecto y correr el archivo "build.gradle"
 ```
 Usando el CMD.
 Para correr todos los tests --> "gradle clean test aggregate" (Este comando ademas crea un reporte HTML con los resultados de cada ejecucion)
+
+```
+
+## Manejo de Enviroments y Browsers 
+
+```
+
+Ejemplo --> "gradle clean test aggregate  -Denvironment=dev  -Dcontext=chrome -Dwebdriver.driver=chrome -Dinjected.tags=browser:chrome"
+
+-Denvironment -> (default, dev, staging, prod) Env en el que se quieren ejecutar las pruebas, si no se inclueye el parametro se ejecutara en un ambiento 'default' definido por defecto en el archivo serenity.conf
+
+-Dwebdriver.driver --> Parametro para indicar en que navegador se van a ejecutar las pruebas.
+
+-Dcontext and Dinjected.tags --> Parametros que usa serenity para agregar tags y diferenciar los browsers en los que se corrienron las pruebas cuando genera el reporte HTML.
 ```
 
 ##Usando el IDE.
 
 ```
 Para correr un solo test --> Ir al folder Runners, abrir la clase Java llamada "Runner" y cambiar el @Tags. 
-Por ejemplo en este caso tenemos 5 opciones = 
 
-Para correr todos los Test debe usar el @Tag de la .feature, es decir: @. 
+Para correr todos los Test debe usar el @Tag de la .feature. 
 
 Seria algo como lo siguiente:
 
 @CucumberOptions(features = {"src/test/resources/features/"},
-        tags = "@",
+        tags = "@TagParaUsar",
         glue = "Definitions",
         snippets = SnippetType.CAMELCASE )
 			
