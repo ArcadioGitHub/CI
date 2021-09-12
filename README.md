@@ -62,6 +62,13 @@ Seria algo como lo siguiente:
         snippets = SnippetType.CAMELCASE )
 			
 ```
+
+##CI.
+
+```
+En el archivo Jenkins.file esta codificado el Pipeline para su ejecucion en Jenkins.
+
+```
 		
 # Acerca del Framework y el Patron de Diseño
 
