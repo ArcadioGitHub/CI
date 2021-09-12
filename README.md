@@ -31,7 +31,6 @@ Abrir el proyecto y correr el archivo "build.gradle"
 ```
 Usando el CMD.
 Para correr todos los tests --> "gradle clean test aggregate" (Este comando ademas crea un reporte HTML con los resultados de cada ejecucion)
-
 ```
 
 ## Manejo de Enviroments y Browsers 
@@ -47,7 +46,7 @@ Ejemplo --> "gradle clean test aggregate  -Denvironment=dev  -Dcontext=chrome -D
 -Dcontext and Dinjected.tags --> Parametros que usa serenity para agregar tags y diferenciar los browsers en los que se corrienron las pruebas cuando genera el reporte HTML.
 ```
 
-##Usando el IDE.
+#Usando el IDE.
 
 ```
 Para correr un solo test --> Ir al folder Runners, abrir la clase Java llamada "Runner" y cambiar el @Tags. 
@@ -59,15 +58,13 @@ Seria algo como lo siguiente:
 @CucumberOptions(features = {"src/test/resources/features/"},
         tags = "@TagParaUsar",
         glue = "Definitions",
-        snippets = SnippetType.CAMELCASE )
-			
+        snippets = SnippetType.CAMELCASE )			
 ```
 
-##CI.
+#CI.
 
 ```
 En el archivo Jenkins.file esta codificado el Pipeline para su ejecucion en Jenkins.
-
 ```
 		
 # Acerca del Framework y el Patron de Diseño
